@@ -5,10 +5,36 @@
     xmlns:local="using:MyHabitTracker"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="using:WinRTXamlToolkit.Controls"
+    xmlns:ControlsPrimitives="using:WinRTXamlToolkit.Controls.Primitives"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
+    <Page.Resources>
+        <Style x:Key="myButtonStyle" TargetType="ControlsPrimitives:CalendarButton">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontSize" Value="38"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="12,17,0,0">
+            <TextBlock Text="Habits" FontSize="48" Margin="11,0,0,0" Foreground="White"/>
+        </StackPanel>
+        <Viewbox Grid.Row="1">
+            <Controls:Calendar x:Name="myCalendar" FontSize="8" Foreground="#FF25D1E2" SelectionMode="SingleDate" Loaded="myCalendar_Loaded"/>
+        </Viewbox>
+        <StackPanel Grid.Row="2">
+            <TextBlock x:Name="fromDate" Text="Fom: 12/12/2014" FontSize="14" Margin="11,5,0,0" Foreground="White"/>
+            <TextBlock x:Name="complete" Text="Completed: 3" FontSize="14" Margin="11,5,0,0" Foreground="White"/>
+            <TextBlock x:Name="incomplete" Text="In-completed: 1" FontSize="14" Margin="11,5,0,0" Foreground="White"/>
+            <TextBlock x:Name="progress" Text="Progress: GOOD" FontSize="14" Margin="11,5,0,0" Foreground="White"/>
+        </StackPanel>
     </Grid>
 </Page>

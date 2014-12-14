@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinRTXamlToolkit.Controls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -22,6 +23,7 @@ namespace MyHabitTracker
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public DateTime d = new DateTime(2014, 12, 10);
         public MainPage()
         {
             this.InitializeComponent();
@@ -43,6 +45,20 @@ namespace MyHabitTracker
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            myCalendar.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            fromDate.Text = (string)sender.ToString();
+        }
+
+        private void myCalendar_Loaded(object sender, RoutedEventArgs e)
+        {
+            Calendar c = sender as Calendar;
+            c.SelectedDate = d;
+            c.CalendarButtonStyle = this.Resources["myButtonStyle"] as Style;
+            int i = 1;
         }
     }
 }
